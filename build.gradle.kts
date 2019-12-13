@@ -19,14 +19,21 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+
 // https://docs.gradle.org/current/userguide/declaring_dependencies.html
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61") // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
     implementation("com.google.zxing:core:3.4.0") // https://mvnrepository.com/artifact/com.google.zxing/core
     implementation("com.xenomachina:kotlin-argparser:2.0.7") // https://mvnrepository.com/artifact/com.xenomachina/kotlin-argparser
 
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.3.61") // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test-junit
-    testImplementation("junit:junit:4.12") // https://mvnrepository.com/artifact/junit/junit
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:1.3.61") // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test-junit
+    testImplementation("org.junit.jupiter:junit-jupiter:5.5.2") // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
 }
 
 // https://docs.gradle.org/current/userguide/declaring_repositories.html
