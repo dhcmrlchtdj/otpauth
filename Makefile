@@ -1,7 +1,5 @@
 SHELL := /bin/bash
 
-run: build
-
 build:
 	gradle shadowJar
 
