@@ -10,11 +10,12 @@ import java.nio.charset.StandardCharsets
 class OTPAuthArgs(parser: ArgParser) {
     val issuer by parser.storing("-i", "--issuer", help = "eg: Google / Github / Cloudflare / ...")
     val account by parser.storing("-a", "--account", help = "eg: user@example.com")
-    val secret by parser.storing("-s", "--secret", help = "OTP key")
+    val secret by parser.storing("-s", "--secret", help = "OTP key. eg: abcd efgh ijkl mnop")
 }
 
-fun buildOTP(oissuer: String, account: String, secret: String): String {
+fun buildOTP(oissuer: String, account: String, osecret: String): String {
     val issuer = URLEncoder.encode(oissuer, StandardCharsets.UTF_8).replace("+", "%20")
+    val secret = osecret.replace(" ", "")
     // https://github.com/google/google-authenticator/wiki/Key-Uri-Format
     val label = "$issuer:$account"
     val parameters = "issuer=$issuer&secret=$secret"
