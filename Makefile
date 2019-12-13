@@ -1,16 +1,19 @@
 SHELL := /bin/bash
 
 run: build
-	java -jar build/libs/otpauth-all.jar
 
 build:
 	gradle shadowJar
+
+native: build
+	native-image --no-server -jar build/libs/otpauth-all.jar otpauth.exe
 
 test:
 	gradle test
 
 clean:
 	gradle clean
+	rm ./*.exe
 
 fmt:
 	ktlint --format --relative './src/**/*.kt'
