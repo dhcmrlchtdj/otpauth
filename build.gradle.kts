@@ -1,7 +1,7 @@
 plugins {
     application // https://docs.gradle.org/current/userguide/application_plugin.html
     id("com.github.johnrengelman.shadow") version "5.2.0" // https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow
-    id("org.jetbrains.kotlin.jvm") version "1.3.61"  // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
+    id("org.jetbrains.kotlin.jvm") version "1.3.61" // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
 }
 
 // https://docs.gradle.org/current/dsl/org.gradle.api.Project.html#N152C6
@@ -25,8 +25,8 @@ dependencies {
     implementation("com.google.zxing:core:3.4.0") // https://mvnrepository.com/artifact/com.google.zxing/core
     implementation("com.xenomachina:kotlin-argparser:2.0.7") // https://mvnrepository.com/artifact/com.xenomachina/kotlin-argparser
 
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:1.3.61") // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test-junit5
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2") // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.3.61") // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test-junit
+    testImplementation("junit:junit:4.12") // https://mvnrepository.com/artifact/junit/junit
 }
 
 // https://docs.gradle.org/current/userguide/declaring_repositories.html
