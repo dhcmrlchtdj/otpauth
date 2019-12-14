@@ -23,7 +23,7 @@ fun buildOTP(oissuer: String, account: String, osecret: String): String {
     return otp
 }
 
-fun toTerminalString(matrix: Array<ByteArray>): String {
+fun toImage(matrix: Array<ByteArray>): String {
     // https://superuser.com/a/1420015
     val black = "\u001b[40m  \u001b[0m"
     val white = "\u001b[47m  \u001b[0m"
@@ -41,7 +41,8 @@ fun main(args: Array<String>) = mainBody {
     parsedArgs.let {
         val otp = buildOTP(it.issuer, it.account, it.secret)
         val qr = Encoder.encode(otp, ErrorCorrectionLevel.L)
-        val str = toTerminalString(qr.getMatrix().getArray())
-        println(str)
+        val img = toImage(qr.getMatrix().getArray())
+        println(otp)
+        println(img)
     }
 }
