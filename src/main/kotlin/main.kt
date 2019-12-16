@@ -36,7 +36,7 @@ fun toImage(matrix: Array<ByteArray>): String {
     return s
 }
 
-fun main(args: Array<String>) = mainBody {
+fun main(args: Array<String>) = mainBody("otpauth") {
     val parsedArgs = ArgParser(args).parseInto(::OTPAuthArgs)
     parsedArgs.let {
         val otp = buildOTP(it.issuer, it.account, it.secret)
