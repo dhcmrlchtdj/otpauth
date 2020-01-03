@@ -12,14 +12,20 @@ struct Cli {
     account: String,
     #[structopt(short, long)]
     secret: String,
+    #[structopt(long)]
+    svg: bool,
 }
 
 fn main() {
     let args = Cli::from_args();
     let otp = build_otp(&args.issuer, &args.account, &args.secret);
-    println!("{}", otp);
+    eprintln!("{}", otp);
     let qr = QrCode::encode_text(&otp, QrCodeEcc::Low).unwrap();
-    let text = to_terminal(&qr);
+    let text = if args.svg {
+        qr.to_svg_string(1)
+    } else {
+        to_terminal_string(&qr)
+    };
     println!("{}", text);
 }
 
@@ -34,7 +40,7 @@ fn build_otp(issuer: &str, account: &str, secret: &str) -> String {
     otp
 }
 
-fn to_terminal(qr: &QrCode) -> String {
+fn to_terminal_string(qr: &QrCode) -> String {
     // https://superuser.com/a/1420015
     let black = "\x1b[40m  \x1b[0m";
     let white = "\x1b[47m  \x1b[0m";
