@@ -45,9 +45,11 @@ fn to_terminal_string(qr: &QrCode) -> String {
     let black = "\x1b[40m  \x1b[0m";
     let white = "\x1b[47m  \x1b[0m";
 
-    let mut result = String::new();
-    for y in 0..qr.size() {
-        for x in 0..qr.size() {
+    let size = qr.size();
+    let qrsize = (size * (size * 12/* newline + black.len() */)) as usize;
+    let mut result = String::with_capacity(qrsize);
+    for y in 0..size {
+        for x in 0..size {
             if qr.get_module(x, y) {
                 result += black
             } else {
